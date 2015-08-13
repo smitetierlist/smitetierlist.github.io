@@ -1,0 +1,16 @@
+{
+  "name": "smitetierlist.github.io",
+  "version": "0.0.1",
+  "homepage": "https://smitetierlist.github.io",
+  "authors": [
+    "schadstoff"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
