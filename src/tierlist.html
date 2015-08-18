@@ -1,4 +1,4 @@
-<div class="row" ng-repeat="(key, tier) in tiers">
+<div class="row tier-container" ng-repeat="(key, tier) in tiers">
     <div id="{{key}}-label" class="tier-label col-xs-2 {{tier.color}} text-uppercase">{{key}}</div>
     <div id="{{key}}" class="tier-row col-xs-10 {{tier.color}}" ng-drop="true"
          ng-drop-success="drop($data, $event, key)">

@@ -6,6 +6,10 @@
     height: 50px;
 }
 
+.tier-container {
+    margin-bottom: 10px;
+}
+
 .red {
     background: #F4FF81;
 }
