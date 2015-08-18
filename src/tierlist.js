@@ -29,8 +29,9 @@
         }
 
         function resetGod(god, event) {
-            removeFromAnyTier(god);
-            $scope.availableGods.push(god);
+            if (removeFromAnyTier(god) === true) {
+                $scope.availableGods.push(god);
+            }
         }
 
 
@@ -52,9 +53,10 @@
                 var index = $scope.tiers[key].gods.indexOf(god);
                 if (index !== -1) {
                     $scope.tiers[key].gods.splice(index, 1);
-                    break;
+                    return true;
                 }
             }
+            return false;
         }
 
         $http
