@@ -18,6 +18,7 @@
   "homepage": "https://github.com/smitetierlist/smitetierlist.github.io",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-bower-files": "^0.2.7",
     "wiredep": "^3.0.0-beta"
   }
 }
