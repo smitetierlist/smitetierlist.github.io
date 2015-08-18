@@ -2,10 +2,10 @@
     <div id="{{key}}-label" class="tier-label col-xs-2 {{tier.color}} text-uppercase">{{key}}</div>
     <div id="{{key}}" class="tier-row col-xs-10 {{tier.color}}" ng-drop="true"
          ng-drop-success="drop($data, $event, key)">
-        <img id="{{god.name}}" ng-repeat="god in tiers[key].gods" ng-src="{{god.icon}}" ng-drag="true" ng-drag-data="god">
+        <img class="avatar" id="{{god.name}}" ng-repeat="god in tiers[key].gods" ng-src="{{god.icon}}" ng-drag="true" ng-drag-data="god">
     </div>
 </div>
 
 <div id="selection" ng-drop="true" ng-drop-success="resetGod($data, $event)" style="background: red; min-height:200px;">
-    <img id="{{god.name}}" ng-repeat="god in availableGods" ng-src="{{god.icon}}" ng-drag="true" ng-drag-data="god">
+    <img class="avatar" id="{{god.name}}" ng-repeat="god in availableGods" ng-src="{{god.icon}}" ng-drag="true" ng-drag-data="god">
 </div>

@@ -2,6 +2,11 @@
     background: none;
 }
 
+.avatar {
+    height: 50px;
+    width: 50px;
+}
+
 /* ====== TIER ======*/
 .tier-label, .tier-row {
     min-height: 50px;
