@@ -23,13 +23,28 @@
 
 
         function drop(god, event, tier) {
-            $scope.availableGods.splice($scope.availableGods.indexOf(god), 1);
-            $scope.tiers[tier].gods.push(god);
+            removeFromAnyTier(god);
+            removeFromAvailableGods(god);
+            addToTier(tier, god);
         }
 
         function resetGod(god, event) {
             removeFromAnyTier(god);
             $scope.availableGods.push(god);
+        }
+
+
+        function addToTier(tier, god) {
+            if ($scope.tiers.hasOwnProperty(tier) && $scope.tiers[tier].gods.indexOf(god) === -1) {
+                $scope.tiers[tier].gods.push(god);
+            }
+        }
+
+        function removeFromAvailableGods(god) {
+            var index = $scope.availableGods.indexOf(god);
+            if (index !== -1) {
+                $scope.availableGods.splice(index, 1);
+            }
         }
 
         function removeFromAnyTier(god) {
