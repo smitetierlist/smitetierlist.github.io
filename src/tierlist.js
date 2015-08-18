@@ -7,16 +7,16 @@
         $scope.gods = [];
         $scope.availableGods = [];
         $scope.tiers = {
-            'ss': {color: 'red', gods: []},
-            'splus': {color: 'blue', gods: []},
-            's': {color: 'blue', gods: []},
-            'sminus': {color: 'blue', gods: []},
-            'aplus': {color: 'green', gods: []},
-            'a': {color: 'green', gods: []},
-            'aminus': {color: 'green', gods: []},
-            'b': {color: 'grey', gods: []},
-            'c': {color: 'grey', gods: []},
-            'd': {color: 'grey', gods: []}
+            'ss': {name: 'SS', color: 'red', gods: []},
+            'splus': {name: 'S+', color: 'blue', gods: []},
+            's': {name: 'S', color: 'blue', gods: []},
+            'sminus': {name: 'S-', color: 'blue', gods: []},
+            'aplus': {name: 'A+', color: 'green', gods: []},
+            'a': {name: 'A', color: 'green', gods: []},
+            'aminus': {name: 'A-', color: 'green', gods: []},
+            'b': {name: 'B', color: 'grey', gods: []},
+            'c': {name: 'C', color: 'grey', gods: []},
+            'd': {name: 'D', color: 'grey', gods: []}
         };
         $scope.drop = drop;
         $scope.resetGod = resetGod;
