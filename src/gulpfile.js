@@ -7,6 +7,7 @@
     var concat = require('gulp-concat');
     var series = require('stream-series');
     var del = require('del');
+    var rename = require('gulp-rename');
 
     gulp.task('clean', function (cb) {
         del.sync('../index.html', {force: true});
@@ -27,6 +28,7 @@
 
         gulp
             .src('modules/**/*.html')
+            .pipe(rename({dirname: ''}))
             .pipe(gulp.dest('../lib/template/'));
 
         cb();
