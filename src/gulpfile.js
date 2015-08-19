@@ -37,7 +37,7 @@
         var appStream = gulp.src('../lib/app.js');
         gulp
             .src('index.html')
-            .pipe(inject(series(vendorStream, appStream), {relative: true, ignorePath: '../lib/'}))
+            .pipe(inject(series(vendorStream, appStream), {relative: true, ignorePath: '../'}))
             .pipe(gulp.dest('../'));
     });
 
