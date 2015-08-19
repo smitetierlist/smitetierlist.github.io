@@ -14,8 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "bootstrap": "#3.3.4",
-    "angular": "~1.4.4"
+    "bootstrap-css-only": "#3.3.4",
+    "angular": "~1.4.4",
+    "ngDraggable": "~0.1.8"
   }
 }

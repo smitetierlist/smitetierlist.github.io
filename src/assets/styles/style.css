@@ -1,0 +1,39 @@
+*::selection {
+    background: none;
+}
+
+.avatar {
+    height: 50px;
+    width: 50px;
+}
+
+/* ====== TIER ======*/
+.tier-label, .tier-row {
+    min-height: 56px;
+}
+
+.tier-row {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.tier-container {
+    margin-bottom: 10px;
+}
+
+/* ====== COLORS ======*/
+.red {
+    background: #F4FF81;
+}
+
+.blue {
+    background: #80D8FF;
+}
+
+.green {
+    background: #7CB342;
+}
+
+.grey {
+    background: #78909C;
+}
