@@ -8,6 +8,8 @@
     var series = require('stream-series');
     var del = require('del');
     var rename = require('gulp-rename');
+    var watch = require('gulp-watch');
+    var batch = require('gulp-batch');
 
     gulp.task('clean', function (cb) {
         del.sync('../index.html', {force: true});
@@ -50,5 +52,12 @@
     });
 
     gulp.task('build', ['bower', 'angular', 'assets']);
+
     gulp.task('default', ['build', 'inject']);
+
+    gulp.task('watch', function () {
+        watch('**/*', batch(function (events, done) {
+            gulp.start('default', done);
+        }));
+    });
 })();

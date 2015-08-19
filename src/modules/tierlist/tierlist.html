@@ -5,7 +5,6 @@
         <img ng-if="god" class="avatar" id="{{god.name}}" ng-repeat="god in tiers[key].gods" ng-src="{{god.icon}}" ng-drag="true" ng-drag-data="god">
     </div>
 </div>
-
 <div id="selection" ng-drop="true" ng-drop-success="resetGod($data, $event)" style="background: red; min-height:200px;">
     <img ng-if="god" class="avatar" id="{{god.name}}" ng-repeat="god in availableGods" ng-src="{{god.icon}}" ng-drag="true" ng-drag-data="god">
 </div>
