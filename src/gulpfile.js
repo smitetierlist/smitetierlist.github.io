@@ -9,34 +9,36 @@
     var del = require('del');
 
     gulp.task('clean', function (cb) {
-        del('../dist/', {force: true}, cb);
+        del.sync('../index.html', {force:true});
+        del.sync('../lib/', {force:true});
+        cb();
     });
 
     gulp.task('bower', ['clean'], function () {
         return gulpBowerFiles()
-            .pipe(gulp.dest("../dist/bower_components"));
+            .pipe(gulp.dest("../lib/"));
     });
 
     gulp.task('angular', ['clean'], function () {
         return gulp
             .src(['modules/**/*.module.js', 'modules/**/*.js'])
             .pipe(concat('app.js'))
-            .pipe(gulp.dest('../dist/'));
+            .pipe(gulp.dest('../lib/'));
     });
 
     gulp.task('assets', ['clean'], function () {
         return gulp
             .src('assets/**/*')
-            .pipe(gulp.dest('../dist/assets/'));
+            .pipe(gulp.dest('../lib/assets/'));
     });
 
     gulp.task('inject', ['bower', 'angular', 'assets'], function () {
-        var vendorStream = gulp.src(['../dist/**/*.js', '!../dist/app.js', '../dist/**/*.css'], {read: false});
-        var appStream = gulp.src('../dist/app.js');
+        var vendorStream = gulp.src(['../lib/**/*.js', '!../lib/app.js', '../lib/**/*.css'], {read: false});
+        var appStream = gulp.src('../lib/app.js');
         gulp
             .src('index.html')
-            .pipe(inject(series(vendorStream, appStream), {relative: true, ignorePath: '../dist/'}))
-            .pipe(gulp.dest('../dist/'));
+            .pipe(inject(series(vendorStream, appStream), {relative: true, ignorePath: '../lib/'}))
+            .pipe(gulp.dest('../'));
     });
 
     gulp.task('build', ['bower', 'angular', 'assets']);
