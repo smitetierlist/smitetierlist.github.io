@@ -41,7 +41,7 @@
     });
 
     gulp.task('inject', ['bower', 'angular', 'assets'], function () {
-        var vendorStream = gulp.src(['../lib/**/*.js', '!../lib/app.js', '../lib/**/*.css'], {read: false});
+        var vendorStream = gulp.src(['../lib/**/*.js', '!../lib/app.js', '../lib/**/*.css', '../lib/assets/styles/style.cs'], {read: false});
         var appStream = gulp.src('../lib/app.js');
         gulp
             .src('index.html')
