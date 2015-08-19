@@ -9,18 +9,19 @@
     var del = require('del');
 
     gulp.task('clean', function (cb) {
-        return del('../dist/', {force: true}, cb);
+        del('../dist/', {force: true}, cb);
     });
 
     gulp.task('bower', ['clean'], function () {
-        return gulpBowerFiles().pipe(gulp.dest("../dist/bower_components"));
+        return gulpBowerFiles()
+            .pipe(gulp.dest("../dist/bower_components"));
     });
 
     gulp.task('angular', ['clean'], function () {
         return gulp
             .src(['modules/**/*.module.js', 'modules/**/*.js'])
             .pipe(concat('app.js'))
-            .pipe(gulp.dest('../dist/'))
+            .pipe(gulp.dest('../dist/'));
     });
 
     gulp.task('assets', ['clean'], function () {
@@ -35,7 +36,7 @@
         gulp
             .src('index.html')
             .pipe(inject(series(vendorStream, appStream), {relative: true, ignorePath: '../dist/'}))
-            .pipe(gulp.dest('../dist/'))
+            .pipe(gulp.dest('../dist/'));
     });
 
     gulp.task('build', ['bower', 'angular', 'assets']);
