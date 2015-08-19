@@ -9,8 +9,8 @@
     var del = require('del');
 
     gulp.task('clean', function (cb) {
-        del.sync('../index.html', {force:true});
-        del.sync('../lib/', {force:true});
+        del.sync('../index.html', {force: true});
+        del.sync('../lib/', {force: true});
         cb();
     });
 
@@ -19,11 +19,17 @@
             .pipe(gulp.dest("../lib/"));
     });
 
-    gulp.task('angular', ['clean'], function () {
-        return gulp
+    gulp.task('angular', ['clean'], function (cb) {
+        gulp
             .src(['modules/**/*.module.js', 'modules/**/*.js'])
             .pipe(concat('app.js'))
             .pipe(gulp.dest('../lib/'));
+
+        gulp
+            .src('modules/**/*.html')
+            .pipe(gulp.dest('../lib/template/'));
+
+        cb();
     });
 
     gulp.task('assets', ['clean'], function () {
