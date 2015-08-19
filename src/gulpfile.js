@@ -29,7 +29,7 @@
             .pipe(gulp.dest('../dist/assets/'));
     });
 
-    gulp.task('wiredep', ['bower', 'angular', 'assets'], function () {
+    gulp.task('inject', ['bower', 'angular', 'assets'], function () {
         var vendorStream = gulp.src(['../dist/**/*.js', '!../dist/app.js', '../dist/**/*.css'], {read: false});
         var appStream = gulp.src('../dist/app.js');
         gulp
@@ -39,5 +39,5 @@
     });
 
     gulp.task('build', ['bower', 'angular', 'assets']);
-    gulp.task('default', ['build', 'wiredep']);
+    gulp.task('default', ['build', 'inject']);
 })();
