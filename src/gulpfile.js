@@ -9,22 +9,22 @@
     var del = require('del');
 
     gulp.task('clean', function (cb) {
-        del('../dist/', {force: true}, cb);
+        return del('../dist/', {force: true}, cb);
     });
 
     gulp.task('bower', ['clean'], function () {
-        gulpBowerFiles().pipe(gulp.dest("../dist/bower_components"));
+        return gulpBowerFiles().pipe(gulp.dest("../dist/bower_components"));
     });
 
     gulp.task('angular', ['clean'], function () {
-        gulp
+        return gulp
             .src(['modules/**/*.module.js', 'modules/**/*.js'])
             .pipe(concat('app.js'))
             .pipe(gulp.dest('../dist/'))
     });
 
     gulp.task('assets', ['clean'], function () {
-        gulp
+        return gulp
             .src('assets/**/*')
             .pipe(gulp.dest('../dist/assets/'));
     });
