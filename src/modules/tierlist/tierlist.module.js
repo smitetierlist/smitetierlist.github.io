@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('smitetierlist', ['ngDraggable'])
+        .module('smitetierlist', ['ngDraggable', 'imageFallback'])
         .controller('IndexController', IndexController);
 
     function IndexController($scope, $http) {
@@ -64,8 +64,12 @@
         $http
             .get('gods.json')
             .then(function (response) {
-                $scope.gods = angular.copy(response.data);
-                $scope.availableGods = angular.copy(response.data);
-            })
+                var gods = response.data;
+                gods.forEach(function (god) {
+                    god.icon = 'lib/assets/icons/' + god.id + '.jpg';
+                });
+                $scope.gods = angular.copy(gods);
+                $scope.availableGods = angular.copy(gods);
+            });
     }
 })();
