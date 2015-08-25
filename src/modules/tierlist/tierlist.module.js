@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('smitetierlist', ['ngDraggable'])
+        .module('smitetierlist', ['ngDraggable', 'imageFallback'])
         .controller('IndexController', IndexController);
 
     function IndexController($scope, $http) {
