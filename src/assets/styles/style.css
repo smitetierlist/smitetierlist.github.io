@@ -9,7 +9,7 @@
     margin-left: 5px;
 }
 
-.avatar-frame {
+.avatar > .avatar-frame {
     height: 78px;
     width: 79px;
     position: relative;
@@ -17,7 +17,7 @@
     background: url(../../assets/icons/frame-inactive.png) no-repeat top left;
 }
 
-.avatar-frame:hover {
+.avatar > .avatar-frame:hover {
     background: url(../../assets/icons/frame-active.png) no-repeat top left;
 }
 
