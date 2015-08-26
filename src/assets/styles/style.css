@@ -14,7 +14,7 @@
     width: 79px;
     position: relative;
     z-index: 200;
-    background: url(../../assets/icons/frame.png) no-repeat top left;
+    background: url(../../assets/icons/frame-inactive.png) no-repeat top left;
 }
 
 .avatar img {
