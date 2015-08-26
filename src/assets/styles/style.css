@@ -17,6 +17,10 @@
     background: url(../../assets/icons/frame-inactive.png) no-repeat top left;
 }
 
+.avatar-frame:hover {
+    background: url(../../assets/icons/frame-active.png) no-repeat top left;
+}
+
 .avatar img {
     position: relative;
     top: -70px;
