@@ -11,8 +11,7 @@
             scope: {
                 god: '=god'
             },
-            template: '<img ng-if="god" class="avatar" id="{{god.name}}" ng-src="{{god.icon}}" title="{{god.name}}"' +
-                'fallback-src="/lib/assets/icons/kappa.jpg" ng-drag="true" ng-drag-data="god">'
+            templateUrl: 'lib/template/avatar.html'
         };
     }
 })();
