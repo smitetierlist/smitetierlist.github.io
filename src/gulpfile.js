@@ -43,11 +43,17 @@
     });
 
     gulp.task('inject', ['bower', 'angular', 'assets'], function () {
-        var vendorStream = gulp.src(['../lib/**/*.js', '!../lib/app.js', '!../lib/assets/styles/style.css', '../lib/**/*.css'], {read: false});
-        var appStream = gulp.src('../lib/app.js');
-        gulp
+        // Inject js
+        var vendorJS = gulp.src(['../lib/**/*.js', '!../lib/app.js'], {read: false});
+        var customJS = gulp.src('../lib/app.js', {read: false});
+        var vendorCSS = gulp.src(['../lib/**/*.css', '!../lib/assets/styles/**/*.css'], {read: false});
+        var customCSS = gulp.src('../lib/assets/styles/**/*.css', {read: false});
+        return gulp
             .src('index.html')
-            .pipe(inject(series(vendorStream, appStream), {relative: true, ignorePath: '../'}))
+            .pipe(inject(vendorJS, {relative: true, ignorePath: '../', starttag: '<!-- inject:js:vendor -->'}))
+            .pipe(inject(customJS, {relative: true, ignorePath: '../', starttag: '<!-- inject:js:custom -->'}))
+            .pipe(inject(vendorCSS, {relative: true, ignorePath: '../', starttag: '<!-- inject:css:vendor -->'}))
+            .pipe(inject(customCSS, {relative: true, ignorePath: '../', starttag: '<!-- inject:css:custom -->'}))
             .pipe(gulp.dest('../'));
     });
 
