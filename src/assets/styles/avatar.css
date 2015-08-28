@@ -13,7 +13,7 @@
     background: url(../../assets/icons/frame-inactive.png) no-repeat top left;
 }
 
-.avatar > .avatar-frame:hover {
+.avatar:hover > .avatar-frame {
     background: url(../../assets/icons/frame-active.png) no-repeat top left;
 }
 
@@ -28,9 +28,7 @@
     transition: all .5s;
 }
 
-.avatar:hover img {
+.avatar:hover > img {
     transition: all .25s ease-in-out;
     transform: scale(1.1);
 }
-/*.grow { transition: all .2s ease-in-out; }*/
-/*.grow:hover { transform: scale(1.1); }*/
