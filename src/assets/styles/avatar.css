@@ -24,4 +24,13 @@
     height: 62px;
     width: 62px;
     z-index: 10;
+    transform: scale(1);
+    transition: all .5s;
 }
+
+.avatar:hover img {
+    transition: all .25s ease-in-out;
+    transform: scale(1.1);
+}
+/*.grow { transition: all .2s ease-in-out; }*/
+/*.grow:hover { transform: scale(1.1); }*/
