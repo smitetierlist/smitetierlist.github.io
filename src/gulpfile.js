@@ -10,6 +10,9 @@
     var rename = require('gulp-rename');
     var watch = require('gulp-watch');
     var batch = require('gulp-batch');
+    var less = require('gulp-less');
+    var minifyCSS = require('gulp-minify-css');
+    var autoprefixer = require('gulp-autoprefixer');
 
     gulp.task('clean', function (cb) {
         del.sync('../index.html', {force: true});
@@ -36,10 +39,21 @@
         cb();
     });
 
-    gulp.task('assets', ['clean'], function () {
-        return gulp
-            .src('assets/**/*')
+    gulp.task('assets', ['clean'], function (cb) {
+
+        gulp
+            .src('assets/styles/**/*.less')
+            .pipe(concat('app.less'))
+            .pipe(less())
+            .pipe(minifyCSS())
+            .pipe(autoprefixer())
+            .pipe(gulp.dest('../lib/assets/styles/'));
+
+        gulp
+            .src(['assets/**/*', '!**/*.less'])
             .pipe(gulp.dest('../lib/assets/'));
+
+        cb();
     });
 
     gulp.task('inject', ['bower', 'angular', 'assets'], function () {
