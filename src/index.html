@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="lib/head.min.js"></script>
+    <!--the script needs to be inline, so the spinner can be shown before external css is loaded-->
     <style>
         .loader {
             margin: 60px auto;
@@ -56,6 +57,7 @@
 <body ng-app="smitetierlist">
 <div ng-controller="IndexController" id="app-container">
     <div class="loader" ng-show="loading">Loading...</div>
+
     <div ng-show="!loading">
         <div class="hidden-xs hidden-sm" ng-include="'lib/template/tierlist.desktop.html'"></div>
         <div class="hidden-md hidden-lg" ng-include="'lib/template/tierlist.mobile.html'"></div>
@@ -63,25 +65,14 @@
 </div>
 
 <script>
-    console.info("PAGE LOADED");
     head.load('lib/vendor.css');
     head.ready(function () {
-        console.info('vendor.css geladen');
-
         head.load('lib/app.css');
-        head.ready(function () {
-            console.info('app.css geladen');
-        });
     });
 
     head.load('lib/vendor.js');
     head.ready(function () {
-        console.info('vendor.js geladen');
-
         head.load('lib/app.js');
-        head.ready(function () {
-            console.info('app.js geladen');
-        });
     });
 </script>
 </body>
