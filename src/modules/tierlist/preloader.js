@@ -50,28 +50,24 @@ function preloader($q, $rootScope) {
 
             return ( this.promise );
         },
-
-        handleImageError: function handleImageError(imageLocation) {
-            this.errorCount++;
-        },
-        handleImageLoad: function handleImageLoad(imageLocation) {
-
-            this.loadCount++;
-
-            this.deferred.notify({
-                percent: Math.ceil(this.loadCount / this.imageCount * 100),
-                imageLocation: imageLocation
-            });
-
-            // If all of the images have loaded, we can resolve the deferred
-            // value that we returned to the calling context.
-            //if (this.loadCount === this.imageCount) {
+        tryResolve: function () {
             if (this.loadCount + this.errorCount === this.imageCount) {
 
                 this.state = this.states.RESOLVED;
                 this.deferred.resolve(this.imageLocations);
             }
-
+        },
+        handleImageError: function handleImageError(imageLocation) {
+            this.errorCount++;
+            this.tryResolve();
+        },
+        handleImageLoad: function handleImageLoad(imageLocation) {
+            this.loadCount++;
+            this.deferred.notify({
+                percent: Math.ceil(this.loadCount / this.imageCount * 100),
+                imageLocation: imageLocation
+            });
+            this.tryResolve();
         },
         loadImageLocation: function loadImageLocation(imageLocation) {
 
