@@ -28,7 +28,7 @@
 
     gulp.task('bower', ['clean'], function () {
         var js = gulpBowerFiles()
-            .pipe(filter('**/*.js'))
+            .pipe(filter(['**/*.js', '!headjs/']))
             .pipe(concat('vendor.js'))
             .pipe(minifyJS())
             .pipe(gulp.dest('../lib/'));
@@ -38,14 +38,17 @@
             .pipe(autoprefixer())
             .pipe(minifyCSS())
             .pipe(gulp.dest('../lib/'));
-        return merge(js, css);
+        var headjs = gulp
+            .src('bower_components/headjs/dist/1.0.0/head.min.js')
+            .pipe(gulp.dest('../lib/'));
+        return merge(js, css, headjs);
     });
 
     gulp.task('angular', ['clean'], function (cb) {
         gulp
             .src(['modules/**/*.module.js', 'modules/**/*.js'])
             .pipe(concat('app.js'))
-            .pipe(minifyJS({mangle:true}))
+            .pipe(minifyJS({mangle: true}))
             .pipe(gulp.dest('../lib/'));
 
         gulp
@@ -91,13 +94,11 @@
             .pipe(gulp.dest('../'));
     });
 
-    gulp.task('build', ['bower', 'angular', 'assets']);
-
-    gulp.task('default', ['build', 'inject']);
+    gulp.task('build', ['bower', 'angular', 'assets', 'inject']);
 
     gulp.task('watch', function () {
         watch('**/*', batch(function (events, done) {
-            gulp.start('default', done);
+            gulp.start('build', done);
         }));
     });
 })();

@@ -3,95 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <!-- inject:css:vendor -->
-    <!-- endinject -->
-    <!-- inject:css:custom -->
-    <!-- endinject -->
-    <!-- inject:js:vendor -->
-    <!-- endinject -->
-    <!-- inject:js:custom -->
-    <!-- endinject -->
+    <script src="lib/head.min.js"></script>
+    <!--the script needs to be inline, so the spinner can be shown before external css is loaded-->
     <style>
-        .spinner {
-            margin: 100px auto;
-            width: 50px;
-            height: 40px;
-            text-align: center;
+        .loader {
+            margin: 60px auto;
             font-size: 10px;
+            position: relative;
+            text-indent: -9999em;
+            border-top: 1.1em solid rgba(125, 125, 125, 0.2);
+            border-right: 1.1em solid rgba(125, 125, 125, 0.2);
+            border-bottom: 1.1em solid rgba(125, 125, 125, 0.2);
+            border-left: 1.1em solid #ffffff;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: load8 1.1s infinite linear;
+            animation: load8 1.1s infinite linear;
         }
 
-        .spinner > div {
-            background-color: #333;
-            height: 100%;
-            width: 6px;
-            display: inline-block;
-
-            -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-            animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        .loader,
+        .loader:after {
+            border-radius: 50%;
+            width: 10em;
+            height: 10em;
         }
 
-        .spinner .rect2 {
-            -webkit-animation-delay: -1.1s;
-            animation-delay: -1.1s;
-        }
-
-        .spinner .rect3 {
-            -webkit-animation-delay: -1.0s;
-            animation-delay: -1.0s;
-        }
-
-        .spinner .rect4 {
-            -webkit-animation-delay: -0.9s;
-            animation-delay: -0.9s;
-        }
-
-        .spinner .rect5 {
-            -webkit-animation-delay: -0.8s;
-            animation-delay: -0.8s;
-        }
-
-        @-webkit-keyframes sk-stretchdelay {
-            0%, 40%, 100% {
-                -webkit-transform: scaleY(0.4)
+        @-webkit-keyframes load8 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
             }
-            20% {
-                -webkit-transform: scaleY(1.0)
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
             }
         }
 
-        @keyframes sk-stretchdelay {
-            0%, 40%, 100% {
-                transform: scaleY(0.4);
-                -webkit-transform: scaleY(0.4);
+        @keyframes load8 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
             }
-            20% {
-                transform: scaleY(1.0);
-                -webkit-transform: scaleY(1.0);
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
             }
         }
+
     </style>
 </head>
 
 <body ng-app="smitetierlist">
-<div class="spinner" id="page-load">
-    <div class="rect1"></div>
-    <div class="rect2"></div>
-    <div class="rect3"></div>
-    <div class="rect4"></div>
-    <div class="rect5"></div>
-</div>
-<div ng-controller="IndexController" id="app-container" style="visibility: hidden">
-    <div ng-cloak>
+<div ng-controller="IndexController" id="app-container">
+    <div class="loader" ng-show="loading">Loading...</div>
+
+    <div ng-show="!loading">
         <div class="hidden-xs hidden-sm" ng-include="'lib/template/tierlist.desktop.html'"></div>
         <div class="hidden-md hidden-lg" ng-include="'lib/template/tierlist.mobile.html'"></div>
     </div>
 </div>
 
-
 <script>
-    document.addEventListener("DOMContentLoaded", function (event) {
-        document.getElementById('page-load').style.display = 'none';
-        document.getElementById('app-container').style.visibility = 'visible';
+    head.load('lib/vendor.css');
+    head.ready(function () {
+        head.load('lib/app.css');
+    });
+
+    head.load('lib/vendor.js');
+    head.ready(function () {
+        head.load('lib/app.js');
     });
 </script>
 </body>
