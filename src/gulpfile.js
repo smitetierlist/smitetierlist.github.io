@@ -91,13 +91,11 @@
             .pipe(gulp.dest('../'));
     });
 
-    gulp.task('build', ['bower', 'angular', 'assets']);
-
-    gulp.task('default', ['build', 'inject']);
+    gulp.task('build', ['bower', 'angular', 'assets', 'inject']);
 
     gulp.task('watch', function () {
         watch('**/*', batch(function (events, done) {
-            gulp.start('default', done);
+            gulp.start('build', done);
         }));
     });
 })();

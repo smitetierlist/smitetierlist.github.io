@@ -73,26 +73,20 @@
 </head>
 
 <body ng-app="smitetierlist">
-<div class="spinner" id="page-load" ng-show="loading">
-    <div class="rect1"></div>
-    <div class="rect2"></div>
-    <div class="rect3"></div>
-    <div class="rect4"></div>
-    <div class="rect5"></div>
-</div>
-<div ng-controller="IndexController" id="app-container" style="visibility: hidden"  ng-show="!loading">
-    <div ng-cloak>
+<div ng-controller="IndexController" id="app-container">
+    <div class="spinner" id="page-load" ng-show="loading">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+    <div ng-show="!loading">
         <div class="hidden-xs hidden-sm" ng-include="'lib/template/tierlist.desktop.html'"></div>
         <div class="hidden-md hidden-lg" ng-include="'lib/template/tierlist.mobile.html'"></div>
     </div>
 </div>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function (event) {
-//        document.getElementById('page-load').style.display = 'none';
-        document.getElementById('app-container').style.visibility = 'visible';
-    });
-</script>
 </body>
 </html>
