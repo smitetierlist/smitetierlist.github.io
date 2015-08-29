@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('smitetierlist')
-        .controller('IndexController', IndexController);
-
     function IndexController($scope, $http) {
         $scope.gods = [];
         $scope.availableGods = [];
@@ -72,4 +68,10 @@
                 $scope.availableGods = angular.copy(gods);
             });
     }
+
+    IndexController.$inject = ['$scope', '$http'];
+
+    angular
+        .module('smitetierlist')
+        .controller('IndexController', IndexController);
 })();

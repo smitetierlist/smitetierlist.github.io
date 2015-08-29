@@ -1,0 +1,35 @@
+.avatar {
+    float: left;
+    height: 78px;
+    margin-right: 5px;
+    margin-left: 5px;
+    overflow: hidden;
+}
+
+.avatar > .avatar-frame {
+    height: 78px;
+    width: 79px;
+    position: relative;
+    z-index: 200;
+    background: url(assets/icons/frame-inactive.png) no-repeat top left;
+}
+
+.avatar:hover > .avatar-frame {
+    background: url(assets/icons/frame-active.png) no-repeat top left;
+}
+
+.avatar img {
+    position: relative;
+    top: -70px;
+    left: 9px;
+    height: 62px;
+    width: 62px;
+    z-index: 10;
+    transform: scale(1);
+    transition: all .5s;
+}
+
+.avatar:hover > img {
+    transition: all .25s ease-in-out;
+    transform: scale(1.1);
+}

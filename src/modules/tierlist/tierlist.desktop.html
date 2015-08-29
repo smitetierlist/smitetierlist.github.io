@@ -1,0 +1,18 @@
+<div id="tierlist" class="col-md-8">
+    <div ng-repeat="(key,tier) in tiers"
+         ng-drop="true" ng-drop-success="drop($data, $event, key)">
+        <div class="tier-container">
+            <div class="tier-label tier-{{key}}">{{tier.name}}</div>
+            <div class="tier-row tier-{{key}}">
+                <avatar ng-repeat="god in tiers[key].gods" god="god"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="pool" class="col-md-4">
+    <div ng-drop="true" ng-drop-success="resetGod($data, $event)">
+        <avatar ng-repeat="god in availableGods" god="god"></avatar>
+    </div>
+</div>
