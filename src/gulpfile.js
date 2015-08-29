@@ -14,6 +14,7 @@
     var minifyJS = require('gulp-uglify');
     var minifyCSS = require('gulp-minify-css');
     var minifyHTML = require('gulp-minify-html');
+    var minifyInline = require('gulp-minify-inline');
     var autoprefixer = require('gulp-autoprefixer');
     var filter = require('gulp-filter');
     var merge = require('merge-stream');
@@ -86,6 +87,7 @@
             .pipe(inject(vendorCSS, {relative: true, ignorePath: '../', starttag: '<!-- inject:css:vendor -->'}))
             .pipe(inject(customCSS, {relative: true, ignorePath: '../', starttag: '<!-- inject:css:custom -->'}))
             .pipe(minifyHTML())
+            .pipe(minifyInline())
             .pipe(gulp.dest('../'));
     });
 
