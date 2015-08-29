@@ -73,13 +73,8 @@
                     .then(function onSuccess(i) {
                         $scope.gods = angular.copy(i);
                         $scope.availableGods = angular.copy(i);
-                        console.info("GELADEN");
                         $scope.loading = false;
-                    }, angular.noop,
-                    function onNotification(e) {
-                        console.info("PERCENT:", e.percent);
-                    }
-                );
+                    });
             });
     }
 
