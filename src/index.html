@@ -52,9 +52,27 @@
         }
 
     </style>
+    <script>
+        window.onload = function () {
+            head.load('lib/vendor.css');
+            head.ready(function () {
+                head.load('lib/app.css');
+            });
+
+            head.load('lib/vendor.js');
+            head.ready(function () {
+                head.load('lib/app.js');
+                head.ready(function () {
+                    angular.element(document).ready(function () {
+                        angular.bootstrap(document, ["smitetierlist"]);
+                    });
+                });
+            });
+        };
+    </script>
 </head>
 
-<body ng-app="smitetierlist">
+<body>
 <div ng-controller="IndexController" id="app-container">
     <div class="loader" ng-show="loading">Loading...</div>
 
@@ -63,17 +81,5 @@
         <div class="hidden-md hidden-lg" ng-include="'lib/template/tierlist.mobile.html'"></div>
     </div>
 </div>
-
-<script>
-    head.load('lib/vendor.css');
-    head.ready(function () {
-        head.load('lib/app.css');
-    });
-
-    head.load('lib/vendor.js');
-    head.ready(function () {
-        head.load('lib/app.js');
-    });
-</script>
 </body>
 </html>
