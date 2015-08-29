@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    function IndexController($scope, $http) {
+    function IndexController($scope, $http, preloader) {
+        $scope.loading = true;
         $scope.gods = [];
         $scope.availableGods = [];
         $scope.tiers = {
@@ -64,13 +65,25 @@
                 gods.forEach(function (god) {
                     god.icon = 'lib/assets/icons/' + god.id + '.jpg';
                 });
-                $scope.gods = angular.copy(gods);
-                $scope.availableGods = angular.copy(gods);
+                //$scope.gods = angular.copy(gods);
+                //$scope.availableGods = angular.copy(gods);
+
+                preloader
+                    .preloadImages(gods)
+                    .then(function onSuccess(i) {
+                        $scope.gods = angular.copy(i);
+                        $scope.availableGods = angular.copy(i);
+                        console.info("GELADEN");
+                        $scope.loading = false;
+                    }, angular.noop,
+                    function onNotification(e) {
+                        console.info("PERCENT:", e.percent);
+                    }
+                );
             });
     }
 
-    IndexController.$inject = ['$scope', '$http'];
-
+    IndexController.$inject = ['$scope', '$http', 'preloader'];
     angular
         .module('smitetierlist')
         .controller('IndexController', IndexController);
