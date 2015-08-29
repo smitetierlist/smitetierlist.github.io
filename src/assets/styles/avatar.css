@@ -3,6 +3,7 @@
     height: 78px;
     margin-right: 5px;
     margin-left: 5px;
+    overflow: hidden;
 }
 
 .avatar > .avatar-frame {
