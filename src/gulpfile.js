@@ -38,10 +38,7 @@
             .pipe(autoprefixer())
             .pipe(minifyCSS())
             .pipe(gulp.dest('../lib/'));
-        var headjs = gulp
-            .src('bower_components/headjs/dist/1.0.0/head.min.js')
-            .pipe(gulp.dest('../lib/'));
-        return merge(js, css, headjs);
+        return merge(js, css);
     });
 
     gulp.task('angular', ['clean'], function (cb) {
@@ -70,15 +67,18 @@
             .pipe(gulp.dest('../lib/'));
 
         gulp
-            .src(['assets/**/*', '!**/*.less'])
+            .src(['assets/**/*', '!**/*.less', '!assets/scripts/lazyload.js'])
             .pipe(gulp.dest('../lib/assets/'));
+
+        gulp
+            .src('assets/scripts/lazyload.js')
+            .pipe(minifyJS())
+            .pipe(gulp.dest('../lib/assets/scripts/'));
 
         cb();
     });
 
     gulp.task('inject', ['bower', 'angular', 'assets'], function () {
-        // Inject js
-        //var vendorJS = gulp.src(['../lib/**/*.js', '!../lib/app.js'], {read: false});
         var vendorJS = gulp.src('../lib/vendor.js', {read: false});
         var customJS = gulp.src('../lib/app.js', {read: false});
         var vendorCSS = gulp.src(['../lib/**/*.css', '!../lib/assets/styles/**/*.css'], {read: false});
