@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <script src="lib/head.min.js"></script>
-    <!--the script needs to be inline, so the spinner can be shown before external css is loaded-->
+    <script src="lib/assets/scripts/lazyload.js"></script>
+    <script>
+        window.onload = function () {
+            LazyLoad.css('lib/vendor.css');
+            LazyLoad.css('lib/app.css');
+
+            LazyLoad.js('lib/vendor.js', function () {
+                LazyLoad.js('lib/app.js', function () {
+                    angular.element(document).ready(function () {
+                        angular.bootstrap(document.getElementById('app-container'), ["smitetierlist"]);
+                    });
+                });
+            });
+
+        };
+    </script>
     <style>
         .loader {
             margin: 60px auto;
@@ -52,33 +66,17 @@
         }
 
     </style>
-    <script>
-        window.onload = function () {
-            head.load('lib/vendor.css');
-            head.ready(function () {
-                head.load('lib/app.css');
-            });
-
-            head.load('lib/vendor.js');
-            head.ready(function () {
-                head.load('lib/app.js');
-                head.ready(function () {
-                    angular.element(document).ready(function () {
-                        angular.bootstrap(document, ["smitetierlist"]);
-                    });
-                });
-            });
-        };
-    </script>
 </head>
 
 <body>
-<div ng-controller="IndexController" id="app-container">
-    <div class="loader" ng-show="loading">Loading...</div>
+<div id="app-container">
+    <div ng-controller="IndexController">
+        <div class="loader" ng-show="loading">Loading...</div>
 
-    <div ng-show="!loading">
-        <div class="hidden-xs hidden-sm" ng-include="'lib/template/tierlist.desktop.html'"></div>
-        <div class="hidden-md hidden-lg" ng-include="'lib/template/tierlist.mobile.html'"></div>
+        <div ng-show="!loading">
+            <div class="hidden-xs hidden-sm" ng-include="'lib/template/tierlist.desktop.html'"></div>
+            <div class="hidden-md hidden-lg" ng-include="'lib/template/tierlist.mobile.html'"></div>
+        </div>
     </div>
 </div>
 </body>
